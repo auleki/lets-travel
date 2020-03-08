@@ -11,6 +11,8 @@ router.get('/', hotelController.homePageFilter);
 router.get('/all', hotelController.listAllHotels);
 router.get('/countries', hotelController.listAllCountries);
 router.get('/all/:hotel', hotelController.hotelDetail);
+router.get('/countries/:country', hotelController.hotelsByCountry);
+
 
 
 // ADMIN ROUTES
@@ -28,3 +30,4 @@ router.post('/admin/:hotelId/delete', hotelController.deleteHotelPost);
 
 
 module.exports = router;
+

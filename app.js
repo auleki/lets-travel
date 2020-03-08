@@ -39,6 +39,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use((req, res, next) => {
+  // console.log(`current path is ${req.path}`);
+  res.locals.url = req.path
+  next();
+})
+
 // app.use(session({
 //   secret: process.env.SECRET,
 

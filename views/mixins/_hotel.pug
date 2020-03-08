@@ -2,10 +2,16 @@ mixin hotel(hotel)
     .hotel
           .hotel_img
             a(href=`/all/${hotel._id}`)
-              img(src=`${hotel.image}`, alt="")
+              //- img(src=`/images/hotels/${hotel.image}`, alt="")
+              img(src=`/images/hotels/arches_lonely_bw_124747_1920x1080.jpg`, alt="")
+
           .hotel_info
             a(href=`/all/${hotel._id}`)
-              h3= hotel.hotel_name            
+              h3= hotel.hotel_name
+            hr
+            if url.startsWith('/all/')
+              p= hotel.hotel_description
+              hr            
             p= `Start rating: ${hotel.star_rating}`
             p= `Country: ${hotel.country}`
             p= `Cost per night: N${hotel.cost_per_night}`
