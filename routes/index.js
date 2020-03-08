@@ -10,6 +10,7 @@ router.get('/', hotelController.homePageFilter);
 
 router.get('/all', hotelController.listAllHotels);
 router.get('/countries', hotelController.listAllCountries);
+router.get('/all/:hotel', hotelController.hotelDetail);
 
 
 // ADMIN ROUTES
