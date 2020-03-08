@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Noto+Sans&family=Pacifico&family=Sansita:wght@400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  padding: 0 45px;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,11 @@
+mixin hotel(hotel)
+    .hotel
+          .hotel_img
+            a(href=`/all/${hotel._id}`)
+              img(src=`${hotel.image}`, alt="")
+          .hotel_info
+            a(href=`/all/${hotel._id}`)
+              h3= hotel.hotel_name            
+            p= `Start rating: ${hotel.star_rating}`
+            p= `Country: ${hotel.country}`
+            p= `Cost per night: N${hotel.cost_per_night}`
