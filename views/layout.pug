@@ -6,7 +6,7 @@ html
   body
     header
       nav
-        a(href="/")
+        a(href="/" class="logo_link")
           img#logo(src="/images/logo.png")
         ul
           li
@@ -18,16 +18,16 @@ html
         form
           .input_wrapper
             label(for="destination") Destination
-            input(type="text" id="destination", name="destination" placeholder="Where to?" required) 
+            input(type="text" id="destination" name="destination" placeholder="Where to?" required) 
           .input_wrapper
             label(for="duration") Duration (nights)
-            input(type="text" id="duration", name="duration" placeholder="Staying for how long?" required) 
+            input(type="text" id="duration" name="duration" placeholder="Staying for how long?" required) 
           .input_wrapper
             label(for="departure-date") Departure Date
-            input(type="date" id="departure-date", name="departureDate" placeholder="When do you want to leave?" required) 
+            input(type="date" id="departure-date" name="departureDate" placeholder="When do you want to leave?" required) 
           .input_wrapper
             label(for="number-guests") Number of Guests
-            input(type="number" id="number-guests", name="numberGuests" placeholder="How may should be there?" required) 
+            input(type="number" id="number-guests" name="numberGuests" placeholder="How may should be there?" required) 
           .input_wrapper
             select(name="stars")
               option(value="1") Min 1 Star

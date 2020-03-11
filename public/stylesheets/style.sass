@@ -32,6 +32,9 @@ nav
     background-color: #4dc2ca
     ul
         padding: 0
+        display: flex
+        flex-direction: column
+        text-align: center
         li
             font-size: 1.2em
             display: inline-block
@@ -42,18 +45,21 @@ nav
 
 .search_nav
     background: #c1e6e9
-    padding: 0.5em           
-    .input_wrapper
-        margin: 0.5em 0
-        text-align: center
-        input
-            width: 100%
-            height: 25px
-            padding: 0.5em 0
-            margin-top: 0.3em
-            border: 0
+    padding: 0.5em
+    form 
+        display: flex 
+        flex-direction: column        
+        .input_wrapper
+            margin: 0.5em 0
             text-align: center
-            border-radius: 3px
+            input
+                width: 100%
+                height: 25px
+                padding: 0.5em 0
+                margin-top: 0.3em
+                border: 0
+                text-align: center
+                border-radius: 3px
 img 
     width: 100%
 select, button
@@ -105,3 +111,59 @@ button
 .button_small
     width: 100px
     margin: 0.5em
+
+@media screen and (min-width: 760px)
+   nav
+       flex-direction: row
+
+       .logo_link
+           flex: 1
+       ul
+        flex: 2      
+        text-align: right 
+        
+        // flex-direction: row
+        margin-right: 1em
+           
+
+    
+.search_nav
+    form 
+        display: flex
+        flex-direction: row  
+        justify-content: center
+        align-items: center
+        flex-wrap: wrap
+        align-content: flex-end
+        .input_wrapper
+            margin: 0
+            padding: 0.5em
+            max-width: 170px
+            text-align: left
+// Nesting the css like this makes this styling only apply to this specific
+// //     element. The hotel details page is excluded 
+.outer_wrapper
+    text-align: left
+.hotel_wrapper
+    .hotel
+        display: flex
+        .hotel_img
+            flex: 1
+            margin: 1em
+        .hotel_info
+            flex: 1
+            padding: 0
+.country_wrapper
+    ul
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        grid-gap: 20px
+        text-align: center
+        li
+            list-style-type: none
+            padding: 1em
+            a
+                text-decoration: none
+                color: #333 
+                font-size: 24px
+
