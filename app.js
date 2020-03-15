@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -21,7 +22,8 @@ const MongoStore = require('connect-mongo')(session);
 // });
 // connecting the database
 
-const url = 'mongodb+srv://ape:abc123456@hotels-app-vuxqk.mongodb.net/test?retryWrites=true&w=majority'
+const url = process.env.DB
+
 const options = {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
