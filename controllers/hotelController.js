@@ -8,11 +8,26 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
-const storage = multer.discStorage({});
+const storage = multer.diskStorage({});
 
 const upload = multer({storage});
 
 exports.upload = upload.single('image');
+
+exports.pushToCloudinary = (req, res, next) => {
+    if(req.file) {
+        cloudinary.uploader.upload(req.file.path)
+        .then(result => {
+            req.body.image = result.image
+            console.log(result);           
+            next();
+        }).catch(() => {
+            res.redirect('/admin/add');
+        })
+    } else {
+        next();
+    }
+}
 // exports.homePage = (req, res) => {
 //     res.render('index', { title: 'AuNation' });
 // }
