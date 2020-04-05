@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+const mongooseBcrypt = require('mongoose-bcrypt');
 
 const userSchema = new mongoose.Schema({
     first_name: {
@@ -23,6 +25,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: 'Password is required',
+        bcrypt: true
     },
     isAdmin: {
         type: Boolean,
@@ -30,5 +33,8 @@ const userSchema = new mongoose.Schema({
     }
     
 });
+
+userSchema.plugin(mongooseBcrypt)
+userSchema.plugin(passportLocalMongoose, { usernameField: 'email', password: 'password' })
 
 module.exports = mongoose.model('User', userSchema);
