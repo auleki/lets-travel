@@ -1,4 +1,4 @@
-mixin hotel(hotel)
+mixin hotel(hotel, searchQuery)
     .hotel
           .hotel_img
             a(href=`/all/${hotel._id}`)
@@ -17,3 +17,34 @@ mixin hotel(hotel)
             p= `Start rating: ${hotel.star_rating}`
             p= `Country: ${hotel.country}`
             p= `Cost per night: N${hotel.cost_per_night}`
+
+          if url.startsWith('/all/')
+            hr
+            h3 Search for this hotel
+            .search_nav
+              form(action="/results" method="POST")
+                .input_wrapper
+                  label(for="destination") Destination
+                  input(type="text" id="destination" name="destination" placeholder="Where to?" value=hotel.hotel_name) 
+                .input_wrapper
+                  label(for="duration") Duration (nights)
+                  input(type="text" id="duration" name="duration" placeholder="Staying for how long?" required) 
+                .input_wrapper
+                  label(for="departure-date") Departure Date
+                  input(type="date" id="departure-date" name="departureDate" placeholder="When do you want to leave?" required) 
+                .input_wrapper
+                  label(for="number-guests") Number of Guests
+                  input(type="number" id="number-guests" name="guestNumber" placeholder="How may should be there?" required)          
+
+                .input_wrapper
+                  button(type="submit") SEARCH!
+
+          if url === '/results'
+            .hotel_order_details
+              p= `Number of nights: ${searchQuery.duration}`
+              p= `Departure date: ${searchQuery.departureDate}`
+              - const costEach = searchQuery.duration * hotel.cost_per_night
+              - const totalCost = costEach * searchQuery.guestNumber
+              p= `Total per person N${costEach}`
+              hr
+              h3= `Total cost: N${totalCost}`

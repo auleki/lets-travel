@@ -4,16 +4,19 @@ const router = express.Router();
 // requireControllers
 
 const hotelController = require('../controllers/hotelController')
+const userController = require('../controllers/userController');
 
 /* GET home page. */
 router.get('/', hotelController.homePageFilter);
-
 router.get('/all', hotelController.listAllHotels);
 router.get('/countries', hotelController.listAllCountries);
 router.get('/all/:hotel', hotelController.hotelDetail);
 router.get('/countries/:country', hotelController.hotelsByCountry);
+router.post('/results', hotelController.searchResults);
 
-
+// USER ROUTES 
+router.get('/sign-up', userController.signUpGet);
+router.post('/sign-up', userController.signUpPost);
 
 // ADMIN ROUTES
 

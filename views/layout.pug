@@ -15,7 +15,7 @@ html
             a(href="/sign-up") Register
     
     .search_nav
-        form
+        form(action="/results" method="POST")
           .input_wrapper
             label(for="destination") Destination
             input(type="text" id="destination" name="destination" placeholder="Where to?" required) 
@@ -27,7 +27,7 @@ html
             input(type="date" id="departure-date" name="departureDate" placeholder="When do you want to leave?" required) 
           .input_wrapper
             label(for="number-guests") Number of Guests
-            input(type="number" id="number-guests" name="numberGuests" placeholder="How may should be there?" required) 
+            input(type="number" id="number-guests" name="guestNumber" placeholder="How many should be there?" required) 
           .input_wrapper
             select(name="stars")
               option(value="1") Min 1 Star

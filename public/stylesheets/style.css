@@ -145,7 +145,7 @@ button:hover {
   padding: 0.5em 0;
   margin-top: 0.3em;
   border: 0;
-  text-align: center;
+  text-align: left;
   border-radius: 3px;
 }
 
@@ -153,6 +153,15 @@ button:hover {
   width: 100px;
   margin: 0.5em;
 }
+
+.hotel_order_details {
+  background: #eed;
+  text-align: center;
+  padding: 1em;
+}
+
+
+
 
 @media screen and (min-width: 760px) {
   nav {
@@ -225,6 +234,13 @@ button:hover {
           flex: 1;
   padding: 0;
 }
+
+.hotel_order_details {
+  background: #eed;
+  text-align: left;
+  padding: 1em;
+}
+
 
 .country_wrapper ul {
   display: -ms-grid;
