@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Passport = require('passport');
 const { check, validationResult, body } = require('express-validator');
 
 
@@ -10,15 +11,12 @@ exports.signUpPost =
 [
     check('first_name')
     .isLength({ min: 1 })
-    .withMessage('First name must be specified')
-    .isAlphanumeric()
-    .withMessage('First name must be alphanumeric'),
+    .withMessage('First name must be specified'),
     
     check('surname')
     .isLength({ min: 1 })
-    .withMessage('Surname must be specified')
-    .isAlphanumeric()
-    .withMessage('Surname must be alphanumeric'),
+    .withMessage('Surname must be specified'),
+    
 
     check('email')
     .isEmail()
@@ -57,3 +55,12 @@ exports.signUpPost =
     }
 
 ]
+
+exports.loginGet = (req, res) => {
+    res.render('login', { title: 'Login' });
+}
+
+exports.loginPost = Passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+})
