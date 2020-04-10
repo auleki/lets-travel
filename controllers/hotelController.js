@@ -78,7 +78,7 @@ exports.createHotelPost =  async (req, res, next) => {
     try {
     const hotel = new Hotel(req.body);    
     await hotel.save();
-    console.log(hotel)
+    req.flash('success', `${hotel.hotel_name} created successfully`);
     res.redirect(`/all/${hotel._id}`);
   } catch(error) {
       next(error)
@@ -117,7 +117,7 @@ exports.editRemovePost = async (req, res, next) => {
             res.render('hotel_detail', {title: 'Add / Remove  Hotel', hotelData})
             return
         } else {
-            res.redirect('/admin');
+            res.redirect('/admin/edit-remove');
         }
         
     } catch(e) {
@@ -139,6 +139,7 @@ exports.updateHotelPost = async (req, res, next) => {
     try {
         const hotelId = req.params.hotelId;
         const hotel = await Hotel.findByIdAndUpdate(hotelId, req.body, { new: true });
+        req.flash('success', `${hotel.hotel_name} updated successfully`);
         res.redirect(`/all/${hotelId}`);
     } catch(e) {
         next(e)
@@ -159,6 +160,7 @@ exports.deleteHotelPost = async (req, res, next) => {
     try {
         const hotelId = req.params.hotelId
         const hotel = await Hotel.findByIdAndRemove({ _id: hotelId  });
+        req.flash('info', `Hotel ID: ${hotelId} has been deleted`);
         res.redirect('/admin');
     } catch (error) {
         next(error)

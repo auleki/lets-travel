@@ -50,7 +50,8 @@ exports.signUpPost =
                     console.log(err, 'error while registering');
                     return next(err);
                 }
-            })
+                next();
+            });
         }
     }
 
@@ -62,5 +63,23 @@ exports.loginGet = (req, res) => {
 
 exports.loginPost = Passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login'
+    successFlash: 'You are now logged in',
+    failureRedirect: '/login',
+    failureFlash: 'Login failed, please try again'
 })
+
+exports.logout = (req, res) => {
+    req.logout();
+    req.flash('info', 'You have been logged out succesfully');
+    res.redirect('/');
+}
+
+exports.isAdmin = (req, res, next) => {
+    if(req.isAuthenticated() && req.user.isAdmin) {
+        next();
+        return;
+    } else {
+        req.flash('info', 'You are not an admin, what are you looking for');
+        res.redirect('/');
+    }
+}

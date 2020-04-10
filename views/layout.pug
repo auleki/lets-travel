@@ -9,10 +9,14 @@ html
         a(href="/" class="logo_link")
           img#logo(src="/images/logo.png")
         ul
-          li
-            a(href="/login") Login
-          li
-            a(href="/sign-up") Register
+          if !user
+            li
+              a(href="/login") Login
+            li
+              a(href="/sign-up") Register
+          else 
+            li
+              a(href="/logout") Logout (#{user.first_name})
     
     .search_nav
         form(action="/results" method="POST")
@@ -43,6 +47,13 @@ html
 
           .input_wrapper
             button(type="submit") SEARCH!
+
+    - const values = Object.values(flash)
+    - const keys = Object.keys(flash)
+    if keys.length > 0
+      div(class=`message message_${keys}`)
+        span= values
+        span.close_btn(onclick="this.parentNode.remove()") &times;
 
     img(src="/images/beach.jpg")        
     block content

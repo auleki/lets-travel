@@ -17,6 +17,7 @@ const passport = require('passport');
 const session = require('express-session');
 // the parenthesis at the end runs the function
 const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
 
 
 // mongoose.connect(monngodb_url, {useNewUrlParser: true,useUnifiedTopology: true}).then(()=>{
@@ -46,6 +47,13 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(session({
+  secret: process.env.SECRET,
+  saveUninitialized: false,
+  resave: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -53,11 +61,16 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// Flash Messages 
+app.use(flash());
+
 
 
 app.use((req, res, next) => {
   // console.log(`current path is ${req.path}`);
-  res.locals.url = req.path
+  res.locals.user = req.user;
+  res.locals.url = req.path;
+  res.locals.flash = req.flash();
   next();
 })
 
